@@ -219,7 +219,7 @@ def preprocess_chromagrams(examples, feature_extractor):
     audio_arrays = [np.array(x).flatten() for x in examples["input_values"]]
 
     inputs = feature_extractor(
-           audio_arrays, sampling_rate=SR, max_length=16000, truncation=True, padding=True)
+           audio_arrays, sampling_rate=SR, max_length=16000, truncation=True)
         
     return inputs
 def find_inhomogeneous_shapes(dataset, column_name):
