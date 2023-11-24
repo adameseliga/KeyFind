@@ -13,8 +13,8 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 logging.info(f'{DEVICE}')
 SR = 16000
 
-model_checkpoint = "facebook/hubert-large-ls960-ft"
-FEATURE_EXTRACTOR = AutoFeatureExtractor.from_pretrained("facebook/wav2vec2-base")
+model_checkpoint = "facebook/wav2vec2-base"
+FEATURE_EXTRACTOR = AutoFeatureExtractor.from_pretrained(model_checkpoint)
 logging.basicConfig(format="%(asctime)s - %(message)s", level=logging.INFO)
 
 
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     
     """
     # build new model class
-    model = AutoModelForAudioClassification.from_pretrained("facebook/wav2vec2-base", num_labels=24, label2id=label2id, id2label=id2label, ignore_mismatched_sizes=True) 
+    model = AutoModelForAudioClassification.from_pretrained(model_checkpoint, num_labels=24, label2id=label2id, id2label=id2label, ignore_mismatched_sizes=True) 
 
     training_args = TrainingArguments(
         output_dir="./keyFinder",
