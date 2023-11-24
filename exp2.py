@@ -3,6 +3,7 @@ import datasets
 import warnings
 import logging
 import torch
+import sys
 from utils import preprocess_chromagrams, map_labels, one_h, compute_metrics
 
 
@@ -13,7 +14,7 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 logging.info(f'{DEVICE}')
 SR = 16000
 
-model_checkpoint = "facebook/wav2vec2-base"
+model_checkpoint = sys.argv[1]
 FEATURE_EXTRACTOR = AutoFeatureExtractor.from_pretrained(model_checkpoint)
 logging.basicConfig(format="%(asctime)s - %(message)s", level=logging.INFO)
 
