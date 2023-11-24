@@ -23,7 +23,7 @@ logging.basicConfig(format="%(asctime)s - %(message)s", level=logging.INFO)
 if __name__ == '__main__':
     logging.info('Parsing dataset...')
 
-    encoded_data = datasets.Dataset.from_parquet('/home/aseliga/Documents/repos/keyidentifier/encoded_datasets.parquet')
+    encoded_data = datasets.Dataset.from_parquet('./encoded_datasets.parquet')
 
     
     logging.info('Preprocessing features...')
