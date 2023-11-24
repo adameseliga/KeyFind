@@ -1,19 +1,22 @@
-from transformers import TrainingArguments, Trainer, AutoFeatureExtractor, AutoModelForAudioClassification
+from transformers import TrainingArguments, Trainer, AutoFeatureExtractor, HubertForSequenceClassification
+import huggingface_hub as huggingface
 import datasets
 import warnings
 import logging
 import torch
+import sys
 from utils import preprocess_chromagrams, map_labels, one_h, compute_metrics
 
 
 # Constants
 warnings.filterwarnings("ignore")
+huggingface.login()
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 logging.info(f'{DEVICE}')
 SR = 16000
 
-model_checkpoint = "facebook/wav2vec2-base"
+model_checkpoint = sys.argv[1]
 FEATURE_EXTRACTOR = AutoFeatureExtractor.from_pretrained(model_checkpoint)
 logging.basicConfig(format="%(asctime)s - %(message)s", level=logging.INFO)
 
@@ -69,13 +72,13 @@ if __name__ == '__main__':
     
     """
     # build new model class
-    model = AutoModelForAudioClassification.from_pretrained(model_checkpoint, num_labels=24, label2id=label2id, id2label=id2label, ignore_mismatched_sizes=True) 
+    model = HubertForSequenceClassification.from_pretrained(model_checkpoint, num_labels=24, label2id=label2id, id2label=id2label, ignore_mismatched_sizes=True) 
 
     training_args = TrainingArguments(
         output_dir="./keyFinder",
         evaluation_strategy="epoch",
         save_strategy="epoch",
-        learning_rate=3e-6,
+        learning_rate=3e-4,
         per_device_train_batch_size=4,
         gradient_accumulation_steps=4,
         per_device_eval_batch_size=4,
