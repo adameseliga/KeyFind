@@ -8,8 +8,8 @@ import sys
 from utils import preprocess_chromagrams, map_labels, one_h, compute_metrics
 
 
-# Constants
 
+# Constants
 warnings.filterwarnings('ignore')
 logging.basicConfig(format='%(asctime)s - %(message)s', level=logging.INFO)
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
@@ -111,7 +111,7 @@ if __name__ == '__main__':
     model.print_trainable_parameters()
 
 
-    trainer.train() # go crazy
+
     
 
 
