@@ -116,7 +116,7 @@ if __name__ == '__main__':
     
 
     trainer.train() # go crazy
-    
+    trainer.evaluate()
 
 
     logging.info('Starting Training...')    
