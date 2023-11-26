@@ -58,5 +58,5 @@ Download `encoded_dataset.parquet` from the link I sent you and place it inside 
 To use the script, you need to provide the path to the pre-trained model as a command-line argument. The model should be compatible with the Hugging Face Transformers library and suitable for audio classification tasks.
 
 Run the script using the following command:
-`python exp3.py "facebook/hubert-large-ls960-ft"
+`python exp3.py "facebook/hubert-large-ls960-ft"`
 
